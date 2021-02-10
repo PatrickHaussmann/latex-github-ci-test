@@ -23,15 +23,13 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
-      
+          post_compile: |
+            mv main.pdf html/
+          
       - uses: actions/upload-artifact@v2
         with:
           name: PDF
-          path: main.pdf
-          
-      - name: move to folder
-        run: |
-          mv main.pdf html/
+          path: html/main.pdf
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
