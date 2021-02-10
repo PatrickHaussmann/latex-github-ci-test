@@ -23,13 +23,18 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
+      
       - uses: actions/upload-artifact@v2
         with:
           name: PDF
           path: main.pdf
+          
+      - name: move to folder
+        run: |
+          mv main.pdf html/
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./html
